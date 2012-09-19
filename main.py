@@ -1,29 +1,4 @@
-Function to print ascii tables out.
 
-```python
-
- wb = Workbook()
- wb.country_code = 61
-
- data = [['a','b','c'],[1,2,3],[4,5,6]]
- write_sheet(wb, data, "test_sheet", print_to_screen=True)  # add one sheet
-
-  +---+---+----+
-  | a | b |  c |
-  +---+---+----+
-  | 1 | 2 |  3 |
-  | 4 | 5 | 60 |
-  +---+---+----+
-
- wb.save("test.xls")
- # now, will have a xls spreadsheet
-```
-
-Code
-```python
-
-#pip install xlutils
-#pip install xlwt
 from xlwt import Workbook, Font, XFStyle, Borders, Alignment
 
 
@@ -156,5 +131,3 @@ if __name__ == "__main__":
     write_sheet(wb, data, "test_sheet", print_to_screen=True)
 
     wb.save("test.xls")
-
-```
