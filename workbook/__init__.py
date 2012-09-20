@@ -15,7 +15,7 @@ def print_table(data, title="", bold=True):
             if len(maxs) <= i:
                 maxs.append(0)
             if len(str(cell)) > maxs[i]:
-                maxs[i] = len(str(cell))
+                maxs[i] = len(str(cell).decode('utf-8'))
 
     tb = "+-" + "-+-".join(["-" * m for m in maxs]) + "-+"
     print
