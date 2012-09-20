@@ -1,4 +1,4 @@
-print_to_table
+workbook
 ==============
 
 Print a simple data structure to a ASCII table, or to a Excel Spreedsheet
@@ -7,11 +7,13 @@ Function to print ascii tables out.
 
 ```python
 
- wb = Workbook()
- wb.country_code = 61
+from workbook import Workbook, write_sheet
 
- data = [['a','b','c'],[1,2,3],[4,5,6]]
- write_sheet(wb, data, "test_sheet", print_to_screen=True)  # add one sheet
+wb = Workbook()
+wb.country_code = 61
+
+data = [['a','b','c'],[1,2,3],[4,5,6]]
+write_sheet(wb, data, "test_sheet", print_to_screen=True)  # add one sheet
 
   +---+---+----+
   | a | b |  c |
@@ -20,12 +22,12 @@ Function to print ascii tables out.
   | 4 | 5 | 60 |
   +---+---+----+
 
- wb.save("test.xls")
- # now, will have a xls spreadsheet
+wb.save("test.xls")
+# now, will have a xls spreadsheet
 ```
 
-Requirements
+Installation
 ============
 
-    pip install xlutils
-    pip install xlwt
+    pip install workbook
+
