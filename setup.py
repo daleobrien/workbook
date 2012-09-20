@@ -6,7 +6,7 @@ description = '''App that creates xls reports, or tables, from simple lists'''
 
 setup(
     name='workbook',
-    packages=('workbook.py', ),
+    packages=('workbook', ),
     version=__version__,
     description=description,
     author='Dale O\'Brien',
