@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 from xlwt import Workbook, Font, XFStyle, Borders, Alignment
 
