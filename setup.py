@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = '1.01'
+__version__ = '1.1'
 
 description = '''App that creates xls reports, or tables, from simple lists'''
 

@@ -26,13 +26,13 @@ print_table(data, "Title")
 To create an excel workbook,
 ```python
 
-from workbook import Workbook, write_sheet
+from workbook import Workbook
 
 wb = Workbook()
 wb.country_code = 61
 
 data = [['a','b','c'],[1,2,3],[4,5,6]]
-write_sheet(wb, data, "test_sheet", print_to_screen=True)  # add one sheet
+wb.write_sheet(data, "test_sheet", print_to_screen=True)  # add one sheet
 
 *** test_sheet ***
 
@@ -43,7 +43,7 @@ write_sheet(wb, data, "test_sheet", print_to_screen=True)  # add one sheet
   | 4 | 5 | 60 |
   +---+---+----+
 
-write_sheet(wb, data, "2nd_sheet", print_to_screen=False)  # add another
+wb.write_sheet(data, "2nd_sheet", print_to_screen=False)  # add another
 
 wb.save("test.xls")  # now, will have a xls spreadsheet
 ```

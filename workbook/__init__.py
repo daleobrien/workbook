@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-from xlwt import Workbook, Font, XFStyle, Borders, Alignment
+from xlwt import Workbook as _WB_, Font, XFStyle, Borders, Alignment
 
+    
 
 def print_table(data, title="", bold=True):
 
@@ -49,79 +50,81 @@ def print_table(data, title="", bold=True):
     print tb
 
 
-def write_sheet(wb, data, sheet_name, print_to_screen=False):
-    '''Write a very simple table to a new sheet in a spreadsheet,
-       Optionally, print the table to the screen'''
+class Workbook(_WB_):
 
-    # most cells
-    al = Alignment()
-    al.horz = Alignment.HORZ_RIGHT
-    al.vert = Alignment.VERT_CENTER
-    font = Font()
-    font.name = 'Arial'
-    font.height = 9 * 20  # 9 pt
-    style = XFStyle()
-    style.font = font
-    style.alignment = al
+    def write_sheet(self, data, sheet_name, print_to_screen=False):
+        '''Write a very simple table to a new sheet in a spreadsheet,
+           Optionally, print the table to the screen'''
 
-    # tops cells
-    al = Alignment()
-    al.horz = Alignment.HORZ_CENTER
-    al.vert = Alignment.VERT_CENTER
-    font = Font()
-    font.name = 'Arial'
-    font.bold = True
-    font.height = 9 * 20  # 9 pt
-    style_top = XFStyle()
-    style_top.font = font
-    style_top.alignment = al
+        # most cells
+        al = Alignment()
+        al.horz = Alignment.HORZ_RIGHT
+        al.vert = Alignment.VERT_CENTER
+        font = Font()
+        font.name = 'Arial'
+        font.height = 9 * 20  # 9 pt
+        style = XFStyle()
+        style.font = font
+        style.alignment = al
 
-    # left cells
-    al = Alignment()
-    al.horz = Alignment.HORZ_LEFT
-    al.vert = Alignment.VERT_CENTER
-    font = Font()
-    font.name = 'Arial'
-    font.bold = True
-    font.italic = True
-    font.height = 9 * 20  # 9 pt
-    style_left = XFStyle()
-    style_left.font = font
-    style_left.alignment = al
+        # tops cells
+        al = Alignment()
+        al.horz = Alignment.HORZ_CENTER
+        al.vert = Alignment.VERT_CENTER
+        font = Font()
+        font.name = 'Arial'
+        font.bold = True
+        font.height = 9 * 20  # 9 pt
+        style_top = XFStyle()
+        style_top.font = font
+        style_top.alignment = al
 
-    ws = wb.add_sheet(sheet_name)
+        # left cells
+        al = Alignment()
+        al.horz = Alignment.HORZ_LEFT
+        al.vert = Alignment.VERT_CENTER
+        font = Font()
+        font.name = 'Arial'
+        font.bold = True
+        font.italic = True
+        font.height = 9 * 20  # 9 pt
+        style_left = XFStyle()
+        style_left.font = font
+        style_left.alignment = al
 
-    for i, row in enumerate(data):
-        for j, cell in enumerate(row):
+        ws = self.add_sheet(sheet_name)
 
-            borders = Borders()
+        for i, row in enumerate(data):
+            for j, cell in enumerate(row):
 
-            if i == 0:
-                borders.top = 1
-                borders.bottom = 2
+                borders = Borders()
 
-            if i == len(row) - 1:
-                borders.bottom = 1
+                if i == 0:
+                    borders.top = 1
+                    borders.bottom = 2
 
-            if j == 0:
-                borders.left = 1
-                borders.right = 1
+                if i == len(row) - 1:
+                    borders.bottom = 1
 
-            if j == len(row) - 1:
-                borders.right = 1
+                if j == 0:
+                    borders.left = 1
+                    borders.right = 1
 
-            if j == 0:
-                _style = style_left
-            elif i == 0:
-                _style = style_top
-            else:
-                _style = style
+                if j == len(row) - 1:
+                    borders.right = 1
 
-            _style.borders = borders
-            ws.write(i + 1, j + 1, cell, _style)
+                if j == 0:
+                    _style = style_left
+                elif i == 0:
+                    _style = style_top
+                else:
+                    _style = style
 
-    if print_to_screen:
-        print print_table(data, sheet_name, bold=True)
+                _style.borders = borders
+                ws.write(i + 1, j + 1, cell, _style)
+
+        if print_to_screen:
+            print print_table(data, sheet_name, bold=True)
 
 if __name__ == "__main__":
 
@@ -129,6 +132,6 @@ if __name__ == "__main__":
     wb.country_code = 61
 
     data = [["Acc", "b", "c"], [1, 2, 3], [4, 3, 5]]
-    write_sheet(wb, data, "test_sheet", print_to_screen=True)
+    wb.write_sheet(data, "test_sheet", print_to_screen=True)
 
     wb.save("test.xls")
