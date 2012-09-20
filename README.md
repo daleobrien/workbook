@@ -3,7 +3,7 @@ workbook
 
 Print a simple data structure to a ASCII table, or to a Excel Spreedsheet
 
-To print an ascii tables out,
+To print an ascii table out,
 
 ```python
 
