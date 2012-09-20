@@ -33,7 +33,7 @@ class TestSequenceFunctions(unittest.TestCase):
         wb.write_sheet(data, "test_sheet", print_to_screen=True)
 
         # add another sheet
-        data = [['Ö', 'b', 'x'],
+        data = [['o', 'b', 'x'],
                 [0, 0, 1],
                 [1, 1, 0]]
         wb.write_sheet(data, "another", print_to_screen=True)
@@ -41,6 +41,8 @@ class TestSequenceFunctions(unittest.TestCase):
         wb.save('test.xls')
 
         # TODO: add a test to check the xls file is as expected
+        # TODO: add test to check we can somehow write utf-8 (or convert)
+        # when writing to a excel file
 
     def test_unicode_table(self):
 
