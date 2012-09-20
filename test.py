@@ -6,7 +6,7 @@ from StringIO import StringIO
 import sys
 
 
-class TestSequenceFunctions(unittest.TestCase):
+class TestWorkbook(unittest.TestCase):
 
     def setUp(self):
         self.saved_stdout = sys.stdout
