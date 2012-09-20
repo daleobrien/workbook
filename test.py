@@ -32,7 +32,15 @@ class TestSequenceFunctions(unittest.TestCase):
         # add one sheet
         wb.write_sheet(data, "test_sheet", print_to_screen=True)
 
+        # add another sheet
+        data = [['Ö', 'b', 'x'],
+                [0, 0, 1],
+                [1, 1, 0]]
+        wb.write_sheet(data, "another", print_to_screen=True)
+
         wb.save('test.xls')
+
+        # TODO: add a test to check the xls file is as expected
 
     def test_unicode_table(self):
 
