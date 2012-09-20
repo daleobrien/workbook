@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/daleobrien/workbook.png)](http://travis-ci.org/daleobrien/workbook)
+
 workbook
 ==============
 
