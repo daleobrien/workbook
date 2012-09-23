@@ -30,20 +30,19 @@ class TestWorkbook(unittest.TestCase):
                 [4, 5, 6]]
 
         # add one sheet
-        wb.write_sheet(data, "test_sheet", print_to_screen=True)
+        wb.write_sheet(data, u"-- ☍ --", print_to_screen=True)
 
         # add another sheet
         data = [['o', 'b', 'x'],
                 [0, 0, 1],
                 [1, 1, 0]]
-        wb.write_sheet(data, "another", print_to_screen=True)
+        wb.write_sheet(data, u"sheet", print_to_screen=True)
 
         wb.save('test.xls')
 
         # TODO: add a test to check the xls file is as expected
 
     def test_unicode_excel(self):
-        sys.stdout = self.saved_stdout
         wb = self.wb
 
         # 2D data, mix of unicode and such like
@@ -52,8 +51,8 @@ class TestWorkbook(unittest.TestCase):
                 [4, 5, 6]]
 
         # just don't through any exceptions
-        wb.write_sheet(data, "another", print_to_screen=True)
-        wb.save('test.xls')
+        wb.write_sheet(data, u"☍ unicode sheet name", print_to_screen=True)
+        wb.save(u'☍.xls')
 
     def test_unicode_table(self):
 
