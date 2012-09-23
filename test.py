@@ -66,13 +66,13 @@ class TestWorkbook(unittest.TestCase):
 
         output = self.out.getvalue().strip()
 
-        expected_table = '*** title ***\n\n' +\
-                         '+---+---+---+\n' +\
-                         '| Ö | b | c |\n' +\
-                         '+---+---+---+\n' +\
-                         '| 1 | 2 | 3 |\n' +\
-                         '| 4 | 5 | 6 |\n' +\
-                         '+---+---+---+'
+        expected_table = u'*** title ***\n\n' +\
+                         u'+---+---+---+\n' +\
+                         u'| Ö | b | c |\n' +\
+                         u'+---+---+---+\n' +\
+                         u'| 1 | 2 | 3 |\n' +\
+                         u'| 4 | 5 | 6 |\n' +\
+                         u'+---+---+---+'
 
         self.assertEqual(output, expected_table)
 
@@ -87,13 +87,13 @@ class TestWorkbook(unittest.TestCase):
 
         output = self.out.getvalue().strip()
 
-        expected_table = '*** title ***\n\n' +\
-                         '+---+---+---+\n' +\
-                         '| a | b | c |\n' +\
-                         '+---+---+---+\n' +\
-                         '| 1 | 2 | 3 |\n' +\
-                         '| 4 | 5 | 6 |\n' +\
-                         '+---+---+---+'
+        expected_table = u'*** title ***\n\n' +\
+                         u'+---+---+---+\n' +\
+                         u'| a | b | c |\n' +\
+                         u'+---+---+---+\n' +\
+                         u'| 1 | 2 | 3 |\n' +\
+                         u'| 4 | 5 | 6 |\n' +\
+                         u'+---+---+---+'
 
         self.assertEqual(output, expected_table)
 
@@ -105,12 +105,12 @@ class TestWorkbook(unittest.TestCase):
         output = self.out.getvalue().strip()
 
         # includes control chars
-        expected_table = '*** \x1b[31mtitle\x1b[0m ***\n\n' +\
-                         '+---+---+\n' +\
-                         '| \x1b[32ma\x1b[0m | \x1b[32mÄ\x1b[0m |\n' +\
-                         '+---+---+\n' +\
-                         '| \x1b[32m1\x1b[0m | 2 |\n' +\
-                         '+---+---+'
+        expected_table = u'*** \x1b[31mtitle\x1b[0m ***\n\n' +\
+                         u'+---+---+\n' +\
+                         u'| \x1b[32ma\x1b[0m | \x1b[32mÄ\x1b[0m |\n' +\
+                         u'+---+---+\n' +\
+                         u'| \x1b[32m1\x1b[0m | 2 |\n' +\
+                         u'+---+---+'
 
         self.assertEqual(output, expected_table)
 
