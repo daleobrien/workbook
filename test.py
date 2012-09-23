@@ -41,8 +41,19 @@ class TestWorkbook(unittest.TestCase):
         wb.save('test.xls')
 
         # TODO: add a test to check the xls file is as expected
-        # TODO: add test to check we can somehow write utf-8 (or convert)
-        # when writing to a excel file
+
+    def test_unicode_excel(self):
+        sys.stdout = self.saved_stdout
+        wb = self.wb
+
+        # 2D data, mix of unicode and such like
+        data = [[u'Ö', u'b', 'Ö'],
+                [1, 2, 3],
+                [4, 5, 6]]
+
+        # just don't through any exceptions
+        wb.write_sheet(data, "another", print_to_screen=True)
+        wb.save('test.xls')
 
     def test_unicode_table(self):
 

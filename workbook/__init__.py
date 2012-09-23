@@ -2,7 +2,6 @@
 
 from xlwt import Workbook as _WB_, Font, XFStyle, Borders, Alignment
 
-    
 
 def print_table(data, title="", bold=True):
 
@@ -10,13 +9,27 @@ def print_table(data, title="", bold=True):
 
     maxs = []
 
+    # convert table to all unicode, keep stuff simple later
+    def convert(cell):
+        if isinstance(cell, str):
+            return unicode(cell, 'utf-8')
+        elif not isinstance(cell, unicode):
+            return u"%s" % str(cell)
+        return cell
+
+    data = [[convert(c) for c in row] for row in data]
+
+    # find longest string for each column
     for row in data:
         for i, cell in enumerate(row):
             if len(maxs) <= i:
                 maxs.append(0)
-            if len(str(cell)) > maxs[i]:
-                maxs[i] = len(str(cell).decode('utf-8'))
 
+            l = len(cell)
+            if l > maxs[i]:
+                maxs[i] = l
+
+    # row divider
     tb = "+-" + "-+-".join(["-" * m for m in maxs]) + "-+"
     print
     if title:
@@ -27,20 +40,21 @@ def print_table(data, title="", bold=True):
         print
         print tb
 
-                #_row = ['\033[1m%s\033[0m' % r for r in row]
     for j, row in enumerate(data):
 
         text = []
         for i, cell in enumerate(row):
 
+            # first column is always left, others are right justified
             if i > 0:
-                cell = str(cell).rjust(maxs[i])
+                cell = cell.rjust(maxs[i])
             else:
-                cell = str(cell).ljust(maxs[i])
+                cell = cell.ljust(maxs[i])
 
             if bold:
+                # first column and first row are bold, if enabled
                 if j == 0 or i == 0:
-                    cell = '\033[32m%s\033[0m' % str(cell)
+                    cell = '\033[32m%s\033[0m' % cell
 
             text.append(cell)
 
@@ -121,6 +135,11 @@ class Workbook(_WB_):
                     _style = style
 
                 _style.borders = borders
+
+                # one of the libraries can get confused with plain strings
+                if isinstance(cell, str):
+                    cell = unicode(cell, 'utf-8')
+
                 ws.write(i + 1, j + 1, cell, _style)
 
         if print_to_screen:
