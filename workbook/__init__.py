@@ -31,14 +31,14 @@ def print_table(data, title="", bold=True):
 
     # row divider
     tb = "+-" + "-+-".join(["-" * m for m in maxs]) + "-+"
-    print
+    print()
     if title:
         if bold:
-            print "*** \033[31m" + title + "\033[0m ***"
+            print("*** \033[31m" + title + "\033[0m ***")
         else:
-            print "*** " + title + " ***"
-        print
-        print tb
+            print("*** " + title + " ***")
+        print()
+        print(tb)
 
     for j, row in enumerate(data):
 
@@ -58,10 +58,10 @@ def print_table(data, title="", bold=True):
 
             text.append(cell)
 
-        print "| " + " | ".join(text) + " |"
+        print("| " + " | ".join(text) + " |")
         if j == 0:
-            print tb
-    print tb
+            print(tb)
+    print(tb)
 
 
 class Workbook(_WB_):
@@ -143,7 +143,7 @@ class Workbook(_WB_):
                 ws.write(i + 1, j + 1, cell, _style)
 
         if print_to_screen:
-            print print_table(data, sheet_name, bold=True)
+            print(print_table(data, sheet_name, bold=True))
 
 if __name__ == "__main__":
 
